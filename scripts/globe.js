@@ -8,6 +8,9 @@ import atmosphereFragment from "../shaders/atmosphereFragment.glsl";
 import airportsData from "../data/airports.json";
 import routesData from "../data/routes.json";
 
+import uvMapDay from "../data/earth_uv_map_day.jpg";
+import earthDisplacementMap from "../data/earth_displacement_map.jpg";
+
 // Scene and Camera Config
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -30,9 +33,7 @@ document.body.appendChild(renderer.domElement);
 const group = new THREE.Group();
 
 // Create Globe
-const dayTexture = new THREE.TextureLoader().load(
-    "../data/earth_uv_map_day.jpg"
-);
+const dayTexture = new THREE.TextureLoader().load(uvMapDay);
 // const nightTexture = new THREE.TextureLoader().load(
 //     "../data/earth_uv_map_night.jpeg"
 // );
@@ -43,9 +44,7 @@ const sphere = new THREE.Mesh(
         map: dayTexture, // new THREE.TextureLoader().load("../data/earth_uv_map_day.jpg"),
         // alphaMap: nightTexture,
         // alphaTest: 0,
-        displacementMap: new THREE.TextureLoader().load(
-            "../data/earth_displacement_map.jpg"
-        ),
+        displacementMap: new THREE.TextureLoader().load(earthDisplacementMap),
         blending: THREE.AdditiveBlending,
         displacementScale: 1,
     })
